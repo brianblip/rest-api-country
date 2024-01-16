@@ -1,4 +1,3 @@
-import Button from "./components/Button";
 import CountryCard from "./components/CountryCard";
 import FilterButton from "./components/FilterButton";
 
@@ -7,7 +6,7 @@ export default function Home() {
     <>
       <h1>HEllo WOrld</h1>
       <CountryCard />
-      <Button />
+
       <FilterButton />
     </>
   );
