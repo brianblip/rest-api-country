@@ -3,11 +3,9 @@ import FilterButton from "./components/FilterButton";
 
 export default function Home() {
   return (
-    <>
-      <h1>HEllo WOrld</h1>
-      <CountryCard />
-
+    <div className="">
       <FilterButton />
-    </>
+      <CountryCard />
+    </div>
   );
 }
