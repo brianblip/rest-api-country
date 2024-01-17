@@ -6,17 +6,23 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [theme, setTheme] = useState("light");
 
-  // Toggle theme based on checkbox state
   const handleThemeChange = (e: { target: { checked: any } }) => {
     const newTheme = e.target.checked ? "dark" : "light";
     setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
   };
 
-  // Update the theme initially and whenever it changes
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8080/api/data")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
 
   return (
     <>
