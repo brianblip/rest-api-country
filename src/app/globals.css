@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-dropdown {
+  background-color: var(--bg-base-100) !important;
+  /* You can adjust other styles as needed */
+}
