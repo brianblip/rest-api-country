@@ -14,7 +14,7 @@ export const TopBar = () => {
   return (
     <div className="navbar bg-base-100 px-20">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl  ">Where in the World?</a>
+        <a className="btn btn-ghost text-xl " >Where in the World?</a>
       </div>
       <div className="flex-none">
         <label className="swap swap-rotate">

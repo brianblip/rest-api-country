@@ -1,18 +1,20 @@
 "use client";
 import CountryCard from "./components/CountryCard";
-import FilterButton from "./components/FilterButton";
-import { SearchButton } from "./components/SearchButton";
 import { TopBar } from "./components/TopBar";
-import { useState, useEffect } from "react";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SingleCard from "./components/SingleCard";
 
 export default function Home() {
   return (
-    <div>
-      <TopBar />
 
-      <div className="absolute top-28 left-24">
-        <CountryCard />
-      </div>
-    </div>
+  <BrowserRouter>
+    <TopBar />
+    <Routes>
+      <Route path="/" element={<CountryCard />} />
+      <Route path="/:name" element={<SingleCard />} />
+    </Routes>
+  </BrowserRouter>
+    
   );
 }

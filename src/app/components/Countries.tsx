@@ -1,9 +1,9 @@
 // Define the type for the 'country' prop
-import React, { useState, useEffect } from "react";
+
 import Image from "next/image";
-import { SearchButton } from "./SearchButton";
-import FilterButton from "./FilterButton";
-interface Country {
+import { Link } from "react-router-dom";
+
+interface CountriesProps {
   numericCode: string;
   name: {
     common: string;
@@ -18,77 +18,34 @@ interface Country {
   };
 }
 
-export default function Countries() {
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [search, setSearch] = useState("");
-
-  const fetchCountries = async () => {
-    const response = await fetch("http://localhost:8080/api/countries");
-    const countries = await response.json();
-    setCountries(countries);
-    console.log(countries);
-  };
-
-  useEffect(() => {
-    fetchCountries();
-  }, []);
-
-  const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
-
-
-  const filteredCountries = countries.filter((country) => {
-    return country.name.common.toLowerCase().includes(search.toLowerCase());
-  });
-
+export default function Countries({
+  flags,
+  name,
+  population,
+  region,
+  capital,
+}: CountriesProps) {
   return (
     <>
-      <div className="flex justify-between items-center mb-8 w-full">
-        <div className="flex-grow">
-          <SearchButton onSearchChange={onSearchChange} />
-        </div>
-        <div className="mr-16">
-          <FilterButton />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredCountries.map((country) => {
-          const { numericCode, name, population, region, capital, flags } =
-            country;
-
-          return (
-            <div key={numericCode} className="bg-base-100 rounded-lg">
-              <div className="">
-                <Image
-                  src={flags.png}
-                  width={320}
-                  height={230}
-                  alt={`Flag of ${name.common}`}
-                  priority={true}
-                />
-              </div>
-              <div className="text min-h-[230px] pl-5 rounded-b-lg">
-                <h2 className="font-[600] text-xl py-6">{name.common}</h2>
-                <div className="space-y-2">
-                  <p>
-                    <span className="font-[600]">Population: </span>{" "}
-                    {population.toLocaleString()}
-                  </p>
-                  <p>
-                    <span className="font-[600]">Region: </span>
-                    {region}
-                  </p>
-                  <p>
-                    <span className="font-[600]">Capital: </span> {capital}
-                  </p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <Link to={`/${name.common}`}>
+        <article className="bg-base-100 rounded-lg shadow overflow-hidden hover:bg-base-200">
+          <Image
+            src={flags.png}
+            alt=""
+            className="md:h-44 w-full object-cover"
+            width={320}
+            height={213}
+          />
+          <div className="p-4">
+            <h3 className="font-bold text-lg mb-2">{name.common}</h3>
+            <ul className="flex flex-col items-start justify-start">
+              <li>Population: {population.toLocaleString()}</li>
+              <li>Region: {region}</li>
+              <li>Capital: {capital}</li>
+            </ul>
+          </div>
+        </article>
+      </Link>
     </>
   );
 }
