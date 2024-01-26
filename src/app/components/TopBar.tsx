@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 export const TopBar = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const handleToggle = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    theme === "dark" ? setTheme("lemonade") : setTheme("dark");
   };
 
   useEffect(() => {
@@ -12,16 +12,16 @@ export const TopBar = () => {
   }, [theme]);
 
   return (
-    <div className="navbar bg-base-100 px-20">
-      <div className="flex-1">
-        <a className="btn btn-ghost text-xl " >Where in the World?</a>
+    <div className="navbar bg-base-100 flex justify-between items-center px-4 md:px-8">
+      <div className="">
+        <a className="btn btn-ghost text-xl">Where in the World?</a>
       </div>
-      <div className="flex-none">
+      <div className="">
         <label className="swap swap-rotate">
           <input type="checkbox" onChange={handleToggle} />
 
           <svg
-            className="swap-on fill-current w-10 h-10"
+            className="swap-off fill-current w-10 h-10"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -29,7 +29,7 @@ export const TopBar = () => {
           </svg>
 
           <svg
-            className="swap-off fill-current w-10 h-10"
+            className="swap-on fill-current w-10 h-10"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >

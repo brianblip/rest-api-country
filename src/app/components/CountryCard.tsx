@@ -38,7 +38,7 @@ export default function CountryCard() {
   async function getSearchCountry() {
     try {
       const res = await fetch(
-        `http://localhost:8080/api/countries/${searchCountry}`
+        `http://localhost:8080/api/countries/name/${searchCountry}`
       );
       const data = await res.json();
       setCountries(data);
@@ -74,7 +74,7 @@ export default function CountryCard() {
     <>
       <section className="container mx-auto p-8">
         {/* Search and filter buttons */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md: justify-between mb-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
           <form
             onSubmit={onSearchCountry}
             autoComplete="off"
@@ -95,7 +95,7 @@ export default function CountryCard() {
             <select
               name="filter-by-region"
               id="filter"
-              className="w-52 py-3 px-4 outline-none shadow rounded bg-base-100"
+              className="w-52 py-3 px-4 outline-none shadow rounded bg-base-100 "
               value={regions.name}
               onChange={(event) => filterByRegion(event.target.value)}
             >
