@@ -27,17 +27,17 @@ export default function Countries({
 }: CountriesProps) {
   return (
     <>
-      <Link to={`/${name.common}`}>
-        <article className="bg-base-100 rounded-lg shadow overflow-hidden hover:bg-base-200">
+      <Link to={`/${name.common}`} className="grid">
+        <article className="bg-base-100 rounded-lg shadow overflow-hidden hover:bg-base-200 ">
           <Image
             src={flags.png}
             alt=""
-            className="md:h-44 w-full object-cover"
+            className="md:h-44 w-full object-cover "
             width={320}
             height={213}
           />
-          <div className="p-4">
-            <h3 className="font-bold text-lg mb-2">{name.common}</h3>
+          <div className="p-2">
+            <h3 className="font-bold text-lg mb-2 ">{name.common}</h3>
             <ul className="flex flex-col items-start justify-start">
               <li>Population: {population.toLocaleString()}</li>
               <li>Region: {region}</li>
